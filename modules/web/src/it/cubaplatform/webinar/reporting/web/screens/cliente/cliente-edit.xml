@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="it.cubaplatform.webinar.reporting.web.screens.cliente">
+    <data>
+        <instance id="clienteDc"
+                  class="it.cubaplatform.webinar.reporting.entity.Cliente"
+                  view="cliente-all">
+            <loader/>
+        </instance>
+        <collection id="aziendeDc" class="it.cubaplatform.webinar.reporting.entity.Azienda" view="_local">
+            <loader id="aziendeDl">
+                <query><![CDATA[select e from wbnreports_Azienda e]]></query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox" spacing="true">
+        <scrollBox id="scrollBox"
+                   margin="true,false,false,false"
+                   spacing="true">
+            <hbox id="editControls"
+                  margin="false,false,true,false"
+                  spacing="true">
+            <form id="form" dataContainer="clienteDc">
+                    <column width="450px">
+                        <lookupPickerField id="agenteField"
+                                           width="100%"
+                                           optionsContainer="aziendeDc"
+                                           nullOptionVisible="false"
+                                           property="azienda">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="open" type="picker_open"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </lookupPickerField>
+                        <textField id="ragioneSocialeField" property="ragioneSociale"/>
+                        <lookupField id="tipoField" property="tipo"/>
+                        <textField id="codiceFiscaleField" property="codiceFiscale"/>
+                        <textField id="partitaIvaField" property="partitaIva"/>
+                        <textField id="rappresentanteLegaleField" property="rappresentanteLegale"/>
+                        <checkBox id="consensoPrivacyField" property="consensoPrivacy"/>
+                    </column>
+                </form>
+                <groupBox caption="msg://it.cubaplatform.webinar.reporting.entity/Cliente.sedeLegale"
+                          width="450px">
+                    <grid width="100%"
+                          spacing="true">
+                        <columns>
+                            <column/>
+                            <column flex="1"/>
+                        </columns>
+                        <rows>
+                            <row>
+                                <label value="msg://it.cubaplatform.webinar.reporting.entity/Indirizzo.via"/>
+                                <textField id="sedeLegaleViaField"
+                                           width="100%"
+                                           dataContainer="clienteDc"
+                                           property="sedeLegale.via"/>
+                            </row>
+                            <row>
+                                <label value="msg://it.cubaplatform.webinar.reporting.entity/Indirizzo.comune"/>
+                                <textField id="sedeLegaleComuneField"
+                                           width="100%"
+                                           dataContainer="clienteDc"
+                                           property="sedeLegale.comune"/>
+                            </row>
+                            <row>
+                                <label value="msg://it.cubaplatform.webinar.reporting.entity/Indirizzo.provincia"/>
+                                <textField id="sedeLegaleProvinciaField"
+                                           width="100%"
+                                           dataContainer="clienteDc"
+                                           property="sedeLegale.provincia"/>
+                            </row>
+                            <row>
+                                <label value="msg://it.cubaplatform.webinar.reporting.entity/Indirizzo.cap"/>
+                                <textField id="sedeLegaleCapField"
+                                           width="100%"
+                                           dataContainer="clienteDc"
+                                           property="sedeLegale.cap"/>
+                            </row>
+                        </rows>
+                    </grid>
+                </groupBox>
+            </hbox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

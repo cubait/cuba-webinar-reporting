@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="it.cubaplatform.webinar.reporting.web.screens.azienda">
+    <data>
+        <instance id="aziendaDc"
+                  class="it.cubaplatform.webinar.reporting.entity.Azienda"
+                  view="azienda-all">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox" spacing="true">
+        <scrollBox id="scrollBox"
+                   margin="true,false,false,false"
+                   spacing="true">
+            <hbox id="editControls"
+                  spacing="true">
+                <form id="form" dataContainer="aziendaDc">
+                    <column width="350px">
+                        <textField id="ragioneSocialeField" property="ragioneSociale"/>
+                        <textField id="partitaIvaField" property="partitaIva"/>
+                        <textField id="reaField" property="rea"/>
+                        <textField id="emailField" property="email"/>
+                        <textField id="emailTitolarePrivacyField" property="emailTitolarePrivacy"/>
+                        <textField id="pecField" property="pec"/>
+                        <textField id="telefonoField" property="telefono"/>
+                    </column>
+                </form>
+                <groupBox caption="msg://it.cubaplatform.webinar.reporting.entity/Azienda.sedeLegale"
+                      width="450px">
+                    <grid width="100%"
+                          spacing="true">
+                        <columns>
+                            <column/>
+                            <column flex="1"/>
+                        </columns>
+                        <rows>
+                            <row>
+                                <label value="msg://it.cubaplatform.webinar.reporting.entity/Indirizzo.via"/>
+                                <textField id="sedeLegaleViaField"
+                                           width="100%"
+                                           dataContainer="aziendaDc"
+                                           property="sedeLegale.via"/>
+                            </row>
+                            <row>
+                                <label value="msg://it.cubaplatform.webinar.reporting.entity/Indirizzo.comune"/>
+                                <textField id="sedeLegaleComuneField"
+                                           width="100%"
+                                           dataContainer="aziendaDc"
+                                           property="sedeLegale.comune"/>
+                            </row>
+                            <row>
+                                <label value="msg://it.cubaplatform.webinar.reporting.entity/Indirizzo.provincia"/>
+                                <textField id="sedeLegaleProvinciaField"
+                                           width="100%"
+                                           dataContainer="aziendaDc"
+                                           property="sedeLegale.provincia"/>
+                            </row>
+                            <row>
+                                <label value="msg://it.cubaplatform.webinar.reporting.entity/Indirizzo.cap"/>
+                                <textField id="sedeLegaleCapField"
+                                           width="100%"
+                                           dataContainer="aziendaDc"
+                                           property="sedeLegale.cap"/>
+                            </row>
+                        </rows>
+                    </grid>
+                </groupBox>
+            </hbox>
+            <hbox spacing="true">
+                <vbox width="457px" spacing="true">
+                    <upload id="firmaTitolarePrivacyField"
+                            dataContainer="aziendaDc"
+                            property="firmaTitolarePrivacy"
+                            fileStoragePutMode="IMMEDIATE"
+                            permittedExtensions=".png,.jpg,.jpeg"
+                            fileSizeLimit="131072"
+                            showClearButton="true"
+                            showFileName="true"
+                            dropZone="dropZoneFirma"/>
+                    <vbox id="dropZoneFirma"
+                          align="MIDDLE_CENTER"
+                          height="50px"
+                          spacing="true"
+                          css="width: 100%"
+                          stylename="dropzone-container">
+                        <label id="dropZoneFirmaLabel"
+                               stylename="dropzone-description"
+                               value="Trascina la Firma del Titolare Privacy qui"
+                               align="MIDDLE_CENTER"/>
+                    </vbox>
+                </vbox>
+                <vbox width="457px" spacing="true">
+                    <upload id="logoField"
+                            dataContainer="aziendaDc"
+                            property="logo"
+                            fileStoragePutMode="IMMEDIATE"
+                            permittedExtensions=".png,.jpg,.jpeg"
+                            fileSizeLimit="131072"
+                            showClearButton="true"
+                            showFileName="true"
+                            dropZone="dropZoneLogo"/>
+                    <vbox id="dropZoneLogo"
+                          align="MIDDLE_CENTER"
+                          height="50px"
+                          spacing="true"
+                          css="width: 100%"
+                          stylename="dropzone-container">
+                        <label id="dropZoneLogoLabel"
+                               stylename="dropzone-description"
+                               value="Trascina il Logo qui"
+                               align="MIDDLE_CENTER"/>
+                    </vbox>
+                </vbox>
+            </hbox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

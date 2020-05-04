@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="wbnreports_Azienda" name="azienda-all" extends="_local">
+        <property name="sedeLegale" view="_base"/>
+        <property name="firmaTitolarePrivacy" view="_minimal"/>
+        <property name="logo" view="_minimal"/>
+    </view>
+    <view entity="wbnreports_Cliente" name="cliente-all" extends="_local">
+        <property name="sedeLegale" view="_base"/>
+        <property name="azienda" view="_minimal"/>
+    </view>
+</views>
